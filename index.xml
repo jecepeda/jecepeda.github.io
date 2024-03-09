@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>jecepeda&#39;s blog</title>
+    <link>https://jecepeda.github.io/</link>
+    <description>Recent content on jecepeda&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© jecepeda</copyright>
+    <lastBuildDate>Sat, 09 Mar 2024 11:37:12 +0100</lastBuildDate>
+    <atom:link href="https://jecepeda.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>About</title>
+      <link>https://jecepeda.github.io/about/</link>
+      <pubDate>Sat, 09 Mar 2024 11:37:12 +0100</pubDate>
+      <guid>https://jecepeda.github.io/about/</guid>
+      <description>Hey there! I&amp;rsquo;m Jaime, a software developer since 2017. I work mainly with Golang and Ruby, focusing on building products that make customers happy. This blog is where I share my experiences and insights from the world of software and product development.&#xA;Stick around for some practical tips and stories from my coding adventures!</description>
+    </item>
+    <item>
+      <title>Hello World</title>
+      <link>https://jecepeda.github.io/blog/hello-world/</link>
+      <pubDate>Sat, 09 Mar 2024 11:37:12 +0100</pubDate>
+      <guid>https://jecepeda.github.io/blog/hello-world/</guid>
+      <description>Hello world</description>
+    </item>
+  </channel>
+</rss>

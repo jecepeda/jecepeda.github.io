@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blogs on jecepeda&#39;s blog</title>
+    <link>https://jecepeda.github.io/blog/</link>
+    <description>Recent content in Blogs on jecepeda&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© jecepeda</copyright>
+    <lastBuildDate>Sat, 09 Mar 2024 11:37:12 +0100</lastBuildDate>
+    <atom:link href="https://jecepeda.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hello World</title>
+      <link>https://jecepeda.github.io/blog/hello-world/</link>
+      <pubDate>Sat, 09 Mar 2024 11:37:12 +0100</pubDate>
+      <guid>https://jecepeda.github.io/blog/hello-world/</guid>
+      <description>Hello world</description>
+    </item>
+  </channel>
+</rss>
