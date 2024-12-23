@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html><head lang="en">
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Thoughts On Reading Crafting Interpreters - jecepeda&#39;s blog</title><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Since starting my career, I’ve worked with high-level languages like Go, Ruby, and Python, valuing their abstraction of low-level complexities and their productivity boost. But I soon craved a deeper challenge, which led me to systems programming and low-level development.
+At the end of summer, I set a goal: to dive into Crafting Interpreters by Robert Nystrom. Back in university, I built an AST-based interpreter while studying compilers—functional but slow and far from production-ready." />
+	<meta property="og:image" content=""/>
+	<meta property="og:title" content="Thoughts On Reading Crafting Interpreters" />
+<meta property="og:description" content="Since starting my career, I’ve worked with high-level languages like Go, Ruby, and Python, valuing their abstraction of low-level complexities and their productivity boost. But I soon craved a deeper challenge, which led me to systems programming and low-level development.
+At the end of summer, I set a goal: to dive into Crafting Interpreters by Robert Nystrom. Back in university, I built an AST-based interpreter while studying compilers—functional but slow and far from production-ready." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jecepeda.github.io/blog/thoughts-on-reading-crafting-interpreters/" /><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2024-12-23T17:22:02+01:00" />
+<meta property="article:modified_time" content="2024-12-23T17:22:02+01:00" />
+
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Thoughts On Reading Crafting Interpreters"/>
+<meta name="twitter:description" content="Since starting my career, I’ve worked with high-level languages like Go, Ruby, and Python, valuing their abstraction of low-level complexities and their productivity boost. But I soon craved a deeper challenge, which led me to systems programming and low-level development.
+At the end of summer, I set a goal: to dive into Crafting Interpreters by Robert Nystrom. Back in university, I built an AST-based interpreter while studying compilers—functional but slow and far from production-ready."/>
+<script src="https://jecepeda.github.io/js/feather.min.js"></script>
+	
+	
+        <link href="https://jecepeda.github.io/css/fonts.2c2227b81b1970a03e760aa2e6121cd01f87c88586803cbb282aa224720a765f.css" rel="stylesheet">
+	
+
+	
+	<link rel="stylesheet" type="text/css" media="screen" href="https://jecepeda.github.io/css/main.5cebd7d4fb2b97856af8d32a6def16164fcf7d844e98e236fcb3559655020373.css" />
+		<link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://jecepeda.github.io/css/dark.d22e2a2879d933a4b781535fc4c4c716e9f9d35ea4986dd0cbabda82effc4bdd.css" media="(prefers-color-scheme: dark)"  />
+	
+
+	
+	
+		<script type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+		</script>
+
+		
+		<script type="text/x-mathjax-config">
+		MathJax.Hub.Config({
+			tex2jax: {
+				inlineMath: [['$','$'], ['\\(','\\)']],
+				displayMath: [['$$','$$'], ['\[','\]']],
+				processEscapes: true,
+				processEnvironments: true,
+				skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+				TeX: { equationNumbers: { autoNumber: "AMS" },
+						 extensions: ["AMSmath.js", "AMSsymbols.js"] }
+			}
+		});
+		</script>
+	
+
+	
+	
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css">
+		<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.js"></script>
+		<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+
+		
+		<script>
+			document.addEventListener("DOMContentLoaded", function() {
+					renderMathInElement(document.body, {
+							delimiters: [
+									{left: "$$", right: "$$", display: true},
+									{left: "$", right: "$", display: false}
+							]
+					});
+			});
+			</script>
+	
+
+	
+</head>
+<body>
+        <div class="content"><header>
+	<div class="main">
+		<a href="https://jecepeda.github.io/">jecepeda&#39;s blog</a>
+	</div>
+	<nav>
+		
+		<a href="/">Home</a>
+		
+		<a href="/blog">Posts</a>
+		
+		<a href="/about">About</a>
+		
+		<a href="/tags">Tags</a>
+		
+		
+	</nav>
+</header>
+
+<main>
+	<article>
+		<div class="title">
+			<h1 class="title">Thoughts On Reading Crafting Interpreters</h1>
+			<div class="meta">Posted on Dec 23, 2024</div>
+		</div>
+		
+
+		
+
+		<section class="body">
+			<p>Since starting my career, I’ve worked with high-level languages like Go, Ruby, and Python, valuing their abstraction of low-level complexities and their productivity boost. But I soon craved a deeper challenge, which led me to systems programming and low-level development.</p>
+<p>At the end of summer, I set a goal: to dive into <a href="https://craftinginterpreters.com/"><em>Crafting Interpreters</em></a> by Robert Nystrom. Back in university, I built an AST-based interpreter while studying compilers—functional but slow and far from production-ready. This project felt like the perfect opportunity to revisit C, rebuild foundational skills, and explore the art of writing interpreters from scratch.</p>
+<h2 id="about-the-book">About the Book</h2>
+<p><em>Crafting Interpreters</em> walks you through creating an interpreter from scratch, touching on garbage collection, hash tables, and bytecode representation.</p>
+<p>The first part focuses on a JVM-based tree-walking interpreter, emphasizing scanning, parsing, and interpretation. The second part dives into advanced topics like bytecode, garbage collection, and custom data structures. Unlike the theoretical <em>Dragon Book</em>, this guide is hands-on, making complex concepts approachable.</p>
+<h2 id="the-appeal-of-stack-based-vms">The Appeal of Stack-Based VMs</h2>
+<p>Having built a Haskell interpreter years ago, I was familiar with tree-walking interpreters. Still, I found stack-based VMs fascinating for their simplicity and power. Their versatility is evident—even template engines like MiniJinja rely on them.</p>
+<p>That said, they’re not without downsides. Implementing features like conditionals or loops can be tricky, requiring a manual approach to branching and instruction pointer management.</p>
+<h2 id="rediscovering-c">Rediscovering C</h2>
+<p>Implementing <em>clox</em> in C has been a joy. C once intimidated me—segmentation faults and my lack of experience in university made it overwhelming. Now, breaking code while learning was an exciting challenge, sharpening my debugging skills and deepening my understanding of system-level programming.</p>
+<p>C’s simplicity (and brittleness) forces you to &ldquo;get it right,&rdquo; which is both its strength and its challenge. While memory-safe languages dominate new system programming projects, I think it still makes sense to know C for legacy and ongoing projects.</p>
+<h2 id="demystifying-garbage-collection">Demystifying Garbage Collection</h2>
+<p>Every language I’ve used had a garbage collector, which I benefited a lot from, but at the same time it was something that I didn&rsquo;t know howd it worked internally.
+This book changed that, as it guided me to implement a GC from scratch. It was enlightening to understand why the GC impacts runtime performance, reinforcing the constant trade-offs between languages with and without GC. It was also surprising how conceptually simple is the mark and sweep algorithm. Really recommended</p>
+<h2 id="final-thoughts">Final Thoughts</h2>
+<p>I highly recommend <em>Crafting Interpreters</em> to anyone curious about the theory around parsers or how interpreters work behind the curtains. Robert Nystrom transforms complex ideas into an enjoyable, accessible journey.</p>
+<p>Personally, this book boosted my confidence to tackle tougher challenges. It’s a step forward that every programmer could benefit from. The only thing I regret is not discovering this book before</p>
+<p>If you want to take a look at the final implementation, you can see the repository <a href="https://github.com/jecepeda/clox">here</a>.</p>
+
+		</section>
+
+		<div class="post-tags">
+			
+			
+			
+		</div>
+		</article>
+</main>
+<footer>
+  <div style="display:flex"><a class="soc" href="https://github.com/jecepeda" rel="me" title="GitHub"><i data-feather="github"></i></a>
+    <a class="border"></a></div>
+  <div class="footer-info">
+    2024  © jecepeda |  <a
+      href="https://github.com/athul/archie">Archie Theme</a> | Built with <a href="https://gohugo.io">Hugo</a>
+  </div>
+</footer>
+
+
+<script>
+  feather.replace()
+</script></div>
+    </body>
+</html>

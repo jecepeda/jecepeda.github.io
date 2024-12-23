@@ -7,8 +7,15 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© jecepeda</copyright>
-    <lastBuildDate>Sat, 09 Mar 2024 11:37:12 +0100</lastBuildDate>
+    <lastBuildDate>Mon, 23 Dec 2024 17:22:02 +0100</lastBuildDate>
     <atom:link href="https://jecepeda.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Thoughts On Reading Crafting Interpreters</title>
+      <link>https://jecepeda.github.io/blog/thoughts-on-reading-crafting-interpreters/</link>
+      <pubDate>Mon, 23 Dec 2024 17:22:02 +0100</pubDate>
+      <guid>https://jecepeda.github.io/blog/thoughts-on-reading-crafting-interpreters/</guid>
+      <description>Since starting my career, I’ve worked with high-level languages like Go, Ruby, and Python, valuing their abstraction of low-level complexities and their productivity boost. But I soon craved a deeper challenge, which led me to systems programming and low-level development.&#xA;At the end of summer, I set a goal: to dive into Crafting Interpreters by Robert Nystrom. Back in university, I built an AST-based interpreter while studying compilers—functional but slow and far from production-ready.</description>
+    </item>
     <item>
       <title>Hello World</title>
       <link>https://jecepeda.github.io/blog/hello-world/</link>
